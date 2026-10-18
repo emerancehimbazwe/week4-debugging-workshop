@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debugging Workshop</title>
+</head>
+<body>
+  <h1>JavaScript Debugging Workshop</h1>
+  <button id="testButton">Test Debugger</button>
+  <p id="result">Ready to test.</p>
+
+  <script>
+    const students = [
+      { name: "Amina", score: 85 },
+      { name: "Eric", score: 90 },
+      { name: "Grace", score: 78 }
+    ];
+
+    function showStudents() {
+      const total = students.length;
+      debugger;
+      document.getElementById("result").textContent =
+        "Number of students: " + total;
+    }
+
+    document.getElementById("testButton").addEventListener("click", showStudents);
+  </script>
+</body>
+</html>
