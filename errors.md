@@ -1,63 +1,72 @@
-# Debugging Workshop — Exercise 1
+# Exercise 1: Six Broken Snippets
 
-## Error 1: Variable is not defined
+## Snippet 1: Greeting
 
 **Error type:** ReferenceError
 
-**Meaning:** A variable is used before it has been declared, or its name is incorrect.
+**Meaning:** JavaScript cannot find `studentname` because the variable was declared as `studentName`. JavaScript is case-sensitive.
 
-**Example:** `console.log(userName);`
+**Fix:**
 
-**Fix:** `const userName = "Emerance"; console.log(userName);`
+    console.log("Welcome, " + studentName);
 
-## Error 2: Calling something that is not a function
-
-**Error type:** TypeError
-
-**Meaning:** The code tries to call a value as a function, but that value is not callable.
-
-**Example:** `const age = 20; age();`
-
-**Fix:** `const age = 20; console.log(age);`
-
-## Error 3: Reading a property from undefined
+## Snippet 2: Shouting
 
 **Error type:** TypeError
 
-**Meaning:** The code tries to access a property on a value that does not exist.
+**Meaning:** `toUppercase()` is not a valid string method. The correct method is `toUpperCase()`.
 
-**Example:** `const user = undefined; console.log(user.name);`
+**Fix:**
 
-**Fix:** `const user = { name: "Emerance" }; console.log(user.name);`
+    console.log(city.toUpperCase());
 
-## Error 4: Reassigning a constant
+## Snippet 3: Page title
 
 **Error type:** TypeError
 
-**Meaning:** A variable declared with `const` cannot be reassigned.
+**Meaning:** The selector `#page-titel` does not match the intended HTML element. `querySelector()` returns `null`, so trying to change its `textContent` causes an error.
 
-**Example:** `const score = 10; score = 20;`
+**Fix:**
 
-**Fix:** `let score = 10; score = 20;`
+    const title = document.querySelector("#page-title");
+    title.textContent = "My Tasks";
 
-## Error 5: Unexpected token
+**Note:** Check `errors.html` to confirm the actual ID of the heading. Use that exact ID in the selector.
+
+## Snippet 4: Score counter
+
+**Error type:** TypeError
+
+**Meaning:** A variable declared with `const` cannot be reassigned. The code tries to change `score` from `0` to `10`.
+
+**Fix:**
+
+    let score = 0;
+    score = score + 10;
+    console.log(score);
+
+## Snippet 5: Shopping list
 
 **Error type:** SyntaxError
 
-**Meaning:** The code contains invalid syntax, such as a missing bracket or quote.
+**Meaning:** A comma is missing between `"avocado"` and `"banana"` in the array.
 
-**Example:** `console.log("Hello";`
+**Fix:**
 
-**Fix:** `console.log("Hello");`
+    const fruits = ["mango", "avocado", "banana"];
+    console.log(fruits.length);
 
-## Error 6: Maximum call stack size exceeded
+## Snippet 6: Countdown
 
 **Error type:** RangeError
 
-**Meaning:** A function may be calling itself repeatedly without a stopping condition.
+**Meaning:** The function calls itself repeatedly without a stopping condition. Eventually, the call stack limit is exceeded.
 
-**Example:** `function count() { count(); } count();`
+**Fix:**
 
-**Fix:** `function count(n) { if (n <= 0) return; count(n - 1); } count(3);`
-
-**Note:** These are examples. Replace them with the six actual errors from your instructor's `errors.html` before submitting.
+    function countdown(n) {
+      if (n < 0) return;
+      console.log(n);
+      countdown(n - 1);
+    }
+    countdown(5);
